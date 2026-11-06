@@ -1,0 +1,36 @@
+{
+  "pr": "https://gitcode.com/cann/cannbot-dsl/pull/348",
+  "head": "e3166de6b6380ef2c51f8f0ee9f988606ebf96db",
+  "state": "open",
+  "base": "52d0d8bdd852112999f8fb5c873095830302fdd7",
+  "files": [
+    {
+      "path": "samples/attention/quant_lightning_indexer/quant_lightning_indexer.py",
+      "local_name": "quant_lightning_indexer.py",
+      "sha256": "c94dcde44cbad72d57ffe4519e45e1dfd983fb740ae69508275a2685966b4d23",
+      "bytes": 305160,
+      "url": "https://raw.gitcode.com/cann/cannbot-dsl/raw/e3166de6b6380ef2c51f8f0ee9f988606ebf96db/samples/attention/quant_lightning_indexer/quant_lightning_indexer.py"
+    },
+    {
+      "path": "samples/attention/quant_lightning_indexer_metadata/quant_lightning_indexer_metadata.py",
+      "local_name": "quant_lightning_indexer_metadata.py",
+      "sha256": "2ae386d551dd348aed232c130a583194c67ec1ed51f4ec0b4e8226b3f3de9399",
+      "bytes": 29010,
+      "url": "https://raw.gitcode.com/cann/cannbot-dsl/raw/e3166de6b6380ef2c51f8f0ee9f988606ebf96db/samples/attention/quant_lightning_indexer_metadata/quant_lightning_indexer_metadata.py"
+    },
+    {
+      "path": "samples/attention/quant_sparse_lightning_indexer/quant_sparse_lightning_indexer.py",
+      "local_name": "quant_sparse_lightning_indexer.py",
+      "sha256": "9ea8f32137e93f6c8cc2fc103c0d8bd6c81154b83ba88660f8db2abf2d6f16b3",
+      "bytes": 180510,
+      "url": "https://raw.gitcode.com/cann/cannbot-dsl/raw/e3166de6b6380ef2c51f8f0ee9f988606ebf96db/samples/attention/quant_sparse_lightning_indexer/quant_sparse_lightning_indexer.py"
+    },
+    {
+      "path": "samples/attention/quant_sparse_lightning_indexer_metadata/quant_sparse_lightning_indexer_metadata.py",
+      "local_name": "quant_sparse_lightning_indexer_metadata.py",
+      "sha256": "adbded4e86d6dfa4368525c4c99a7b834e9140baf56d6fe217afba603e580fc7",
+      "bytes": 24534,
+      "url": "https://raw.gitcode.com/cann/cannbot-dsl/raw/e3166de6b6380ef2c51f8f0ee9f988606ebf96db/samples/attention/quant_sparse_lightning_indexer_metadata/quant_sparse_lightning_indexer_metadata.py"
+    }
+  ]
+}

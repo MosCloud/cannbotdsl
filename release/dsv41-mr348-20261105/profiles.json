@@ -1,0 +1,64 @@
+{
+  "qli": [
+    {
+      "candidate_enabled": false,
+      "candidate_topk": 1,
+      "mask_mode": 3,
+      "cmp_ratio": 2,
+      "pa_block_size": 64,
+      "has_seqused_q": false
+    },
+    {
+      "candidate_enabled": false,
+      "candidate_topk": 1,
+      "mask_mode": 3,
+      "cmp_ratio": 2,
+      "pa_block_size": 64,
+      "has_seqused_q": true
+    },
+    {
+      "candidate_enabled": true,
+      "candidate_topk": 2048,
+      "mask_mode": 3,
+      "cmp_ratio": 1,
+      "pa_block_size": 128,
+      "has_seqused_q": false
+    },
+    {
+      "candidate_enabled": true,
+      "candidate_topk": 2048,
+      "mask_mode": 3,
+      "cmp_ratio": 1,
+      "pa_block_size": 128,
+      "has_seqused_q": true
+    }
+  ],
+  "qsli": [
+    {
+      "mask_mode": 3,
+      "cmp_ratio": 1,
+      "pa_block_size": 128,
+      "has_seqused_q": false
+    },
+    {
+      "mask_mode": 3,
+      "cmp_ratio": 1,
+      "pa_block_size": 128,
+      "has_seqused_q": true
+    },
+    {
+      "mask_mode": 3,
+      "cmp_ratio": 1,
+      "pa_block_size": 128,
+      "has_seqused_q": false,
+      "has_output_offset": false
+    },
+    {
+      "mask_mode": 3,
+      "cmp_ratio": 1,
+      "pa_block_size": 128,
+      "has_seqused_q": true,
+      "has_output_offset": false
+    }
+  ]
+}
