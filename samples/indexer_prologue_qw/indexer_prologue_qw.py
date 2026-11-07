@@ -2681,7 +2681,9 @@ def export_indexer_prologue_qw():
         FROZEN_N_HEADS,
         FROZEN_D,
         FROZEN_DR,
-        resolve_cube_cores(),
+        # AOT template planning only; the actual grid is a runtime argument.
+        # Keep the existing override for explicit export configurations.
+        int(os.environ.get("IPQW_CUBE_CORES", "32")),
     )
     buckets = plan_buckets(geo)
     wanted = set()

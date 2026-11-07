@@ -57,6 +57,10 @@ python3 -m pip install --no-deps --force-reinstall /tmp/arena-mr348-source-build
 QLI residual 分支由导出函数产生；预计合并为 55 个 native 变体、3 份 AICPU metadata 库。
 算子实现保留原来的 28 核支持。
 
+CPU 全量导出另修正两处 host 构建流程：K prologue 不再在构造时查询未使用的
+默认 launch grid；QW prologue 用 32 核规划 AOT 模板（可沿用 `IPQW_CUBE_CORES` 指定导出配置）。
+这不改变 kernel 实现；模型运行时仍查询实际核数并传入 launch grid。
+
 首次使用新的空工作目录；中断后在源码、编译器和工具链不变时用相同命令续编。
 更改源码或工具链后换一个工作目录，避免复用旧任务输出。
 工作目录使用容器本地磁盘；部分 NAS 不支持编译器的原子目录发布操作。
@@ -65,6 +69,18 @@ QLI residual 分支由导出函数产生；预计合并为 55 个 native 变体�
 
 `build_base_parallel.py` 仅保留旧命令的兼容入口，现同样编译当前 checkout，
 不再需要 `git archive <旧提交>` 或预先拼装 source 目录。
+
+## 本次全量构建验证（2026-11-07）
+
+在未挂载 NPU、已卸载旧 arena 包的独立 ARM64 容器里完成 23/23 个任务，
+产出 55 个 native 变体、3 份 AICPU metadata 库，安装与模块导入通过。
+历史 wheel 仅在编译完成后用于对照；native 变体键无缺失、无新增，
+Python 源码仅两个 prologue 存在上述 CPU 导出修改。
+详见 [构建核对结果](source-build-verification.json) 和
+[安装导入结果](install-import-verification.json)。本次未执行新包的 NPU 精度验收。
+
+本次产物 SHA256：`4ea8b873a540efdb1697e72f381c6ee354c567d03b8fb93a42f3879ff5e5745c`。
+内部共享目录：`/mnt/share/y00882530/release-source-publication-20261106/source-build-20261107/wheels/`。
 
 ## True / False 如何覆盖
 

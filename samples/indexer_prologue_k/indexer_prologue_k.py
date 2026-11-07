@@ -171,8 +171,6 @@ class _ProjectionKernel:
         self.n_tiles = _ceil_div(self.n, self.base_n)
         self.k_tiles = _ceil_div(self.k, self.base_k)
         self.total_tiles = self.m_tiles * self.n_tiles
-        cube_cores, _ = get_effective_core_counts()
-        self.block_num = min(cube_cores, self.total_tiles)
 
     @kernel
     def kernel(self, gm_latent: Tensor, gm_weight: Tensor, gm_projected: Tensor):
@@ -788,15 +786,8 @@ class IndexerPrologueKPostprocess:
     """Host wrapper for the fused destination-owner vector stage."""
 
     def __init__(self, **kwargs):
-        total_rows = int(kwargs["total_rows"])
-        storage_mode = int(kwargs["storage_mode"])
-        group_size = int(kwargs["combined_block_size"])
-        _, vector_cores = get_effective_core_counts()
-        self.block_num = (
-            min(vector_cores, total_rows)
-            if storage_mode == 0
-            else min(vector_cores, _ceil_div(total_rows, group_size))
-        )
+        # The caller supplies the launch grid to run(); construction also runs
+        # during AOT export on hosts without an NPU.
         self.kernel = _FusedPostScatterKernel(**kwargs)
 
     @host

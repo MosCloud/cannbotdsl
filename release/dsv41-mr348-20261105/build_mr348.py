@@ -45,6 +45,8 @@ def build_job(job, root):
     profile_file.write_text(json.dumps(job["profiles"]))
     env = dict(os.environ, CANNBOTDSL_DS41_PROFILES=str(profile_file),
                PYTHONUNBUFFERED="1")
+    if not job["profiles"]:
+        env.pop("CANNBOTDSL_DS41_PROFILES", None)
     # AICPU compiler headers for the CANN 9.2.0 release toolchain.
     for inc in Path("/usr/local/Ascend/cann-9.2.0/tools/hcc/aarch64-target-linux-gnu/include/c++").glob("*"):
         if inc.is_dir():

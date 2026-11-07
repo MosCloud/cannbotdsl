@@ -1,0 +1,21 @@
+{
+  "wheel": "cannbot_arena_net-0.3.0+ds41.local32pipe32.mr348.source20261107-cp312-cp312-linux_aarch64.whl",
+  "sha256": "4ea8b873a540efdb1697e72f381c6ee354c567d03b8fb93a42f3879ff5e5745c",
+  "all_native_variants": 55,
+  "metadata": [
+    "ops/_aicpu/metadata_kernel.so",
+    "ops/_aicpu/mqsmla_metadata_kernel.so",
+    "ops/_aicpu/qsli_metadata_kernel.so"
+  ],
+  "bad_manifest_files": [],
+  "no_base_package_installed": true,
+  "compiler": "0.8.0",
+  "reference_comparison": {
+    "missing_variant_keys": [],
+    "additional_variant_keys": [],
+    "changed_python_sources": [
+      "ops/indexer_prologue_k.py",
+      "ops/indexer_prologue_qw.py"
+    ]
+  }
+}

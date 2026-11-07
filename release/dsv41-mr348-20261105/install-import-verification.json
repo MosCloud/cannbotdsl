@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "version": "0.3.0+ds41.local32pipe32.mr348.source20261107",
+  "imported_modules": [
+    "ops",
+    "ops.quant_lightning_indexer_dsl",
+    "ops.quant_sparse_lightning_indexer_dsl",
+    "ops.mixed_quant_sparse_flash_mla",
+    "ops.indexer_prologue_k",
+    "ops.indexer_prologue_qw",
+    "ops.attn_epilogue"
+  ],
+  "npu_execution_tested": false
+}
