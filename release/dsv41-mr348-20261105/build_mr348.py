@@ -44,7 +44,7 @@ def build_job(job, root):
     profile_file = root / "jobs" / (name + ".json")
     profile_file.write_text(json.dumps(job["profiles"]))
     env = dict(os.environ, CANNBOTDSL_DS41_PROFILES=str(profile_file),
-               PYTHONUNBUFFERED="1", OMP_NUM_THREADS="2", MAX_JOBS="2")
+               PYTHONUNBUFFERED="1")
     # AICPU compiler headers for the CANN 9.2.0 release toolchain.
     for inc in Path("/usr/local/Ascend/cann-9.2.0/tools/hcc/aarch64-target-linux-gnu/include/c++").glob("*"):
         if inc.is_dir():
@@ -132,7 +132,6 @@ def merge(results, root):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--work-root", type=Path, required=True)
-    parser.add_argument("--jobs", type=int, default=2, help="parallel compiler processes (default: 2)")
     parser.add_argument("--plan", action="store_true", help="print the source build jobs without compiling")
     args = parser.parse_args()
     jobs = build_jobs()
@@ -147,7 +146,7 @@ def main():
         (root / "build-state.json").write_text(json.dumps(state, indent=2))
 
     save()
-    with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs) as pool:
+    with concurrent.futures.ThreadPoolExecutor() as pool:
         futures = [pool.submit(build_job, job, root) for job in jobs]
         for future in concurrent.futures.as_completed(futures):
             result = future.result()

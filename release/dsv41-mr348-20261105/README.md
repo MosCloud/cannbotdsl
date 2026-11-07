@@ -40,7 +40,7 @@ cd cannbotdsl
 source /usr/local/Ascend/cann-9.2.0/set_env.sh
 python3 -m pip install 'cannbot-dsl==0.8.0' 'setuptools>=70.1' wheel torch pytest
 python3 release/dsv41-mr348-20261105/build_mr348.py \
-  --work-root /tmp/arena-mr348-source-build --jobs 2
+  --work-root /tmp/arena-mr348-source-build
 python3 -m pip install --no-deps --force-reinstall /tmp/arena-mr348-source-build/wheels/*.whl
 ```
 
@@ -49,6 +49,8 @@ python3 -m pip install --no-deps --force-reinstall /tmp/arena-mr348-source-build
 `build-state.json` 记录进度；`jobs/*.log` 保存各编译日志；
 `wheel-build-manifest.json` 记录最终 wheel 哈希、native 变体数和 metadata 库。
 可先加 `--plan` 查看任务列表。
+构建任务使用 Python 默认线程池并发；脚本不设置 `OMP_NUM_THREADS` 或 `MAX_JOBS`，
+保留用户已有的编译环境设置。
 
 总计 23 个任务：QLI/QSLI 各 2 个 profile，SparseMLA 3 组可选输入乘
 5 个地址模式（含 local32、pipe32），以及 4 个其他算子。
