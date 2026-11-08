@@ -6860,13 +6860,13 @@ def _build_compiled_fused_runner(
         final_sparse_indices = final_sparse_indices_data.view(total_q, topk)
         sparse_indices = make_tensor(
             make_pointer(dtypes.int32, dtypes.int64(sparse_indices_address), MemLoc.GM),
-            make_layout((64 * query_tile_rows, topk), stride=(topk, 1)),
+            make_layout((MAX_CUBE_WORKERS * 2 * query_tile_rows, topk), stride=(topk, 1)),
         )
         sparse_value_bits = make_tensor(
             make_pointer(
                 dtypes.uint16, dtypes.int64(sparse_value_bits_address), MemLoc.GM
             ),
-            make_layout((64 * query_tile_rows, topk), stride=(topk, 1)),
+            make_layout((MAX_CUBE_WORKERS * 2 * query_tile_rows, topk), stride=(topk, 1)),
         )
         final_sparse_bits = final_sparse_values_data.view(total_q, topk).view(
             dtype=dtypes.uint16
@@ -6880,7 +6880,7 @@ def _build_compiled_fused_runner(
                 dtypes.int32, dtypes.int64(candidate_indices_address), MemLoc.GM
             ),
             make_layout(
-                (64 * query_tile_rows, candidate_topk), stride=(candidate_topk, 1)
+                (MAX_CUBE_WORKERS * 2 * query_tile_rows, candidate_topk), stride=(candidate_topk, 1)
             ),
         )
         candidate_value_bits = make_tensor(
@@ -6888,7 +6888,7 @@ def _build_compiled_fused_runner(
                 dtypes.uint16, dtypes.int64(candidate_value_bits_address), MemLoc.GM
             ),
             make_layout(
-                (64 * query_tile_rows, candidate_topk), stride=(candidate_topk, 1)
+                (MAX_CUBE_WORKERS * 2 * query_tile_rows, candidate_topk), stride=(candidate_topk, 1)
             ),
         )
         query = query_data.flatten(0, 1)
